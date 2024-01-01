@@ -1,0 +1,36 @@
+<apex:page standardController="Account" extensions="ExtensionVFPage_CX">
+  <apex:form >
+      <apex:pageMessages ></apex:pageMessages>
+     <apex:detail subject="{!account.Id}" relatedList="true" title="false"/>
+        <apex:pageBlock title="Account Records">
+          <apex:pageBlockButtons >
+             <apex:commandButton value="Save" action="{!Save}"/>
+             <apex:commandButton value="Cancel" action="{!Cancel}"/>
+             <apex:commandButton value="Edit" action="{!Edit}"/>
+          </apex:pageBlockButtons>
+                <apex:pageBlockSection title="Account Basic Information">
+               
+                    <apex:pageblockTable value="{!accList}" var="objAcc">
+                    <apex:column value="{!objAcc.Name}"/>
+                    <apex:column value="{!objAcc.Type}"/>
+                    <apex:column value="{!objAcc.Rating}"/>
+                    <apex:column value="{!objAcc.SLA__c}"/>
+                    
+                   
+                    <apex:column headerValue="Show Account Details">
+                        <apex:outputLink value="https://eternussolutionsprivateli25-dev-ed--c.visualforce.com/apex/TrialVFAssignment1?Id={!objAcc.Id}"> Edit Account </apex:outputLink>
+                    </apex:column>
+                 </apex:pageblocktable>
+                 </apex:pageBlockSection>
+                 <apex:pageBlockSection title="Related Attachment">
+                         <apex:pageBlockTable value="{!Account.CombinedAttachments}" var="Attachments">
+                             <apex:column value="{!Attachments.Title}"/>
+                             <apex:column value="{!Attachments.FileType}"/>
+                             <apex:column value="{!Attachments.ExternalDataSourceType}"/>
+                             <apex:column value="{!Attachments.ContentUrl}"/>
+                         </apex:pageBlockTable>
+                             <apex:commandLink value="Delete" action="{!Delete}"/>
+                 </apex:pageBlockSection>
+              </apex:pageBlock>
+  </apex:form>
+</apex:page>

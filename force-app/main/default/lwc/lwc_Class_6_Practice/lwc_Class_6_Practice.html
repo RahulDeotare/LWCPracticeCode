@@ -1,0 +1,58 @@
+<template>
+    <lightning-card>
+        <!-- <lightning-input label="Account Name" data-formfield="accountName"></lightning-input> <br /> -->
+        <lightning-button label="Search" variant="brand" icon-name="utility:search" onclick={showAccountTable} ></lightning-button> &nbsp; &nbsp;
+        <lightning-button label="Edit" variant="brand" icon-name="utility:edit" onclick={editAccountHandler} ></lightning-button>
+        <template if:true={showTableFlag}>
+        <table aria-describedby="conatact-list" class="slds-table  slds-table_bordered ">
+            
+            <!--Header of the table-->
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="slds-size_1-of-6 " scope="col">
+                        <div class="slds-truncate " title="Account Name">Account Name</div>
+                    </th>
+                    <th class="slds-size_1-of-6 " scope="col">
+                        <div class="slds-truncate " title="Account Type">Type</div>
+                    </th>
+                    <th class="slds-size_1-of-6 " scope="col">
+                        <div class="slds-truncate " title="Account Rating">Rating</div>
+                    </th>
+                    <th class="slds-size_1-of-6 " scope="col">
+                        <div class="slds-truncate " title="Account SLA">SLA__c</div>
+                    </th>
+               </tr>
+            </thead>
+
+            <!--Body of the table-->
+            <template if:true={editAccountFlag}>
+            <tbody>
+               <template for:each={accList} for:item="acc" >
+                    <tr key={acc.Id}>
+                        <td> <lightning-input data-formfield="accName"  value={acc.Name} ></lightning-input></td>
+                        <td> <lightning-input data-formfield="accType"  value={acc.Type}></lightning-input>     </td>
+                        <td> <lightning-input data-formfield="accRating"  value={acc.Rating}></lightning-input>    </td>
+                        <td> <lightning-input data-formfield="accSLA"  value={acc.SLA__c}></lightning-input>    </td>
+                    </tr>
+               </template>   
+            </tbody>
+        </template>
+        <template if:false={editAccountFlag}>
+            <tbody>
+               
+                <template for:each={accList} for:item="acc">
+                     
+                             <tr key={acc.id}>
+                                 <td>{acc.Name} </td>  
+                                 <td>    {acc.Type}</td> 
+                                 <td>    {acc.Rating}</td>
+                                 <td>    {acc.SLA__c}</td>
+                             </tr>
+                </template>
+         </tbody>
+        </template>
+
+        </table>
+    </template>
+    </lightning-card>
+</template>

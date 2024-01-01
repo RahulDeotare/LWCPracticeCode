@@ -1,0 +1,20 @@
+<apex:page Controller="SearchInVFController">
+    <apex:form >
+        <apex:inputText value="{!searchKey}" label="Input"/>
+        <apex:commandButton value="Search records" action="{!search}"/>
+        <apex:commandButton value="Clear records" action="{!clear}"/>
+        <apex:pageBlock title="Search Result">
+        
+        <apex:outputPanel id="totalRecordsPanel">
+                    Total Records : {!totalRecords}
+               </apex:outputPanel>  <br />
+        <apex:outputPanel id="tablePanel">
+            <apex:pageBlockTable value="{!acc}" var="a">
+                <apex:column value="{!a.name}"/>
+                <apex:column value="{!a.id}"/>
+            </apex:pageBlockTable>
+            </apex:outputPanel>
+            <apex:actionPoller interval="10" action="{!sizeOfRecords}" reRender="totalRecordsPanel,tablePanel"/>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

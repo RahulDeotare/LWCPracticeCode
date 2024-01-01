@@ -1,0 +1,67 @@
+<apex:page standardController="Account" extensions="showAccountTableEx_CX" sidebar="false">
+  <apex:form >
+      <apex:pageMessages ></apex:pageMessages>
+  <apex:image id="theImage" value="{!$Resource.logo}" width="200" height="80" alt="Description of image here"/>
+  <!-- For alphabetic search-->
+<div align="right">
+        <apex:panelGrid >
+            <apex:repeat value="{!alphabet}" var="alph">
+                <apex:commandLink value="{!alph} | " action="{!getalphaSearch}" reRender="table">
+                <apex:param name="a" value="{!alph}" assignTo="{!alphaSearchConct}"/>
+                </apex:commandLink>
+                </apex:repeat>
+        </apex:panelGrid>
+    </div>
+  
+  
+  <apex:inputText value="{!searchKey}" label="Input" html-placeholder="Input at least 3 characters to perform search" style="width: 300px; height: 20px"/>
+        <apex:commandButton value="Search records" action="{!search}"/>
+        <apex:commandButton value="Clear records" action="{!clear}"/>
+        <apex:pageBlock title="Search Result">
+        
+        
+        <apex:outputPanel id="tablePanel">
+            <apex:pageBlockTable value="{!acc}" var="a">
+                <apex:column value="{!a.name}"/>
+                <apex:column value="{!a.id}"/>
+            </apex:pageBlockTable>
+            </apex:outputPanel>
+            <apex:actionPoller interval="10" action="{!sizeOfRecords}" reRender="totalRecordsPanel,tablePanel"/>
+        </apex:pageBlock>
+  
+  
+  
+  
+    <apex:pageBlock title="Account" id="table">
+    <apex:pageBlockButtons >
+                <apex:commandButton value="Manage Contacts" action="{!Save}"/>
+            </apex:pageBlockButtons>
+            <apex:pageblockSection title="Account Table">
+            
+            
+            <apex:outputPanel id="totalRecordsPanel">
+                    Total Records : {!totalRecords}
+               </apex:outputPanel>  <br />
+               
+               
+        
+                 <apex:outputPanel id="tablePanel">
+                   <apex:pageblockTable value="{!accountList}" var="objAcc">
+                       <apex:column value="{!objAcc.Id}"/>
+                       
+                       <apex:column headerValue="Account Name"><apex:outputlink value="/{!objAcc.id}" onclick="window.open('/{!objAcc.Id}','_blank');">{!objAcc.Name}</apex:outputlink> </apex:column>
+                       <apex:column value="{!objAcc.Email__c}"/>
+                       <apex:column headerValue="Account Website"><apex:outputlink value="/{!objAcc.Website}" onclick="window.open('/{!objAcc.Website}','_blank');">{!objAcc.Website}</apex:outputlink></apex:column>
+                       <apex:column value="{!objAcc.Phone}"/>
+                       <apex:column headerValue="Delete Contacts"> 
+                       <apex:commandLink value="Delete" action="{!deleteAcc}" reRender="r" oncomplete="window.location.reload(false)">
+                       <apex:param name="accId" value="{!objAcc.Id}" assignTo="{!accid}"/> </apex:commandLink> 
+                       </apex:column>
+                   </apex:pageblockTable>
+                   
+                </apex:outputPanel>
+                    <apex:actionPoller interval="10" action="{!getAccounts}" reRender="totalRecordsPanel,tablePanel"/>
+            </apex:pageblockSection>
+    </apex:pageBlock>
+   </apex:form> 
+</apex:page>

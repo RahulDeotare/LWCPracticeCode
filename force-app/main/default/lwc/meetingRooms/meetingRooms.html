@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title="Meeting Rooms">
+        
+        <lightning-input 
+          type="checkbox"
+          label="Available Rooms"
+          onchange={showAvailableRooms}
+        ></lightning-input>
+        <template if:true={ifRoomsAvailable}>
+            <ul>
+                <template for:each={meetingRoomsInfo} for:item="room">
+                    <li key={room.roomName} style="padding: 10px;">
+                        <c-meeting-room meeting-room-info={room}></c-meeting-room>
+                    </li>
+                </template>
+            </ul>
+        </template>
+    </lightning-card>
+</template>

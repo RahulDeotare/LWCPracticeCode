@@ -1,0 +1,33 @@
+<apex:page standardController="Student__c" extensions="RegistrationForm_CX" sidebar="false" language="{!selectedLang}">
+  <apex:form >
+      <div >
+        <div style="float:right">
+            <apex:selectList value="{!selectedLang}" size="1">
+                <apex:selectoptions value="{!AvailableLanguages}"/>
+                <apex:actionsupport event="onchange"/>
+            </apex:selectlist>
+        </div>
+    </div>
+   <apex:pageMessages ></apex:pageMessages>
+   <div id="maincontainer">
+      <apex:pageBlock title="Student Form">
+          <apex:pageBlockButtons >
+              <apex:commandButton value="Submit" action="{!Save}"/>
+          </apex:pageBlockButtons>
+                  <apex:pageblockSection title="Student Basic Information">
+                      
+                          <apex:inputField value="{!Student__c.Student_Name__c}"/>
+                          <apex:inputField value="{!Student__c.Roll_number__c}"/>
+                          <apex:inputField value="{!Student__c.Gender__c}"/>
+                          <apex:inputField value="{!Student__c.Course_Applying_for__c}"/>
+                          <apex:inputField value="{!Student__c.H_S_C__c}"/>
+                          <apex:inputField value="{!Student__c.S_S_C__c}"/>
+                          <apex:inputField value="{!Student__c.Country__c}"/>
+                          <apex:inputField value="{!Student__c.State__c}"/>
+                          <apex:inputField value="{!Student__c.City__c}"/>
+                      
+                  </apex:pageblockSection>
+      </apex:pageBlock>
+      </div>
+  </apex:form>
+</apex:page>

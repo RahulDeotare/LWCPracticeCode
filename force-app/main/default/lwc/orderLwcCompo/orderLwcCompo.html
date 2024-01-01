@@ -1,0 +1,32 @@
+<template>
+    <lightning-card title="Edit Order Items Records">
+        <div class="slds-var-p-around_medium">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>List Price</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={orderItems} for:item="ord">
+                        <tr key={ord.fields.Id.Value}>
+                            <td>{ord.fields.Product2Id.value}</td>
+                            <td>{ord.fields.ListPrice.value}</td>
+                            <td>{ord.fields.Quantity.value}</td>
+                            <td>{ord.fields.TotalPrice.value}</td>
+                            <td>
+                                <lightning-button-icon data-index={ord.id} class="slds-float--right"
+                                     icon-name="action:edit" onclick={handleEdit}></lightning-button-icon>
+                                  <lightning-button-icon data-index={ord.id} class="slds-float--right"
+                                     icon-name="action:delete" onclick={handleDelete}></lightning-button-icon>
+                               </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,20 @@
+<template>
+    <lightning-datatable
+    key-field="id"
+    columns={columns}
+    show-row-number-column
+    class="slds-table_striped"
+    data={tableData}
+    hide-checkbox-column
+    resize-column-disabled
+    
+    load-more-offset ={loadMoreOffset}
+    default-sort-direction={defaultSortDirection}
+    sorted-direction={sortDirection}
+    sorted-by={sortedBy}
+    onsort={onHandleSort}
+    onrowaction ={handleRowAction}
+    min-column-width = "100"
+    column-widths-mode="auto">
+    </lightning-datatable>
+</template>

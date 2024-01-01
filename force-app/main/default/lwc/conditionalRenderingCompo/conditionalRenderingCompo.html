@@ -1,0 +1,10 @@
+<template>
+    <lightning-card title="Conditional Rendering">
+        <div class="slds-m-around_small">
+        <lightning-input type="checkbox" label="Show Me My Name" onclick={showName}></lightning-input>
+        <template if:true={displayMyName}>
+            <div>I am Rahul</div>
+        </template>
+    </div>
+    </lightning-card>
+</template>

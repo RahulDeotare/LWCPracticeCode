@@ -1,0 +1,32 @@
+<apex:page standardController="Account" extensions="TrialAssignment_CX">
+  <apex:form >
+      <apex:pageMessages ></apex:pageMessages>
+    
+        <apex:pageBlock title="Account Records">
+            <apex:pageBlockButtons >
+             <apex:commandButton value="Update Records" action="{!Save}"/> 
+                         
+          </apex:pageBlockButtons>
+          
+                <apex:pageBlockSection title="Account Basic Information">
+               
+                    <apex:inputField value="{!objAcc.Name}"/> 
+                    <apex:inputField value="{!objAcc.Type}"/>
+                    <apex:inputField value="{!objAcc.Rating}"/>
+                    <apex:inputField value="{!objAcc.SLA__c}"/>
+                 </apex:pageBlockSection>
+                     
+                     
+                     
+                 <apex:pageBlockSection title="Related Attachment">
+                         <apex:pageBlockTable value="{!Account.CombinedAttachments}" var="Attachments">
+                             <apex:column value="{!Attachments.Title}"/>
+                             <apex:column value="{!Attachments.FileType}"/>
+                             <apex:column value="{!Attachments.ExternalDataSourceType}"/>
+                             <apex:column value="{!Attachments.ContentUrl}"/>
+                         </apex:pageBlockTable>
+                             <apex:commandLink value="Delete" action="{!Delete}"/>
+                 </apex:pageBlockSection>                
+              </apex:pageBlock>
+  </apex:form>
+</apex:page>

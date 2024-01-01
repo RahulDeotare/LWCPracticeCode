@@ -1,0 +1,8 @@
+<template>
+    <lightning-card title="Parent Compo">
+        <lightning-input name="accName" label="Account name" value={accName}></lightning-input> <br />
+        <lightning-button variant="brand" label="Click Me" onclick={sendDataToChild}></lightning-button> <br />
+        <br />
+        <c-show-name account-detail={accountObject}></c-show-name>
+    </lightning-card>
+</template>

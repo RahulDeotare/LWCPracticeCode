@@ -1,0 +1,32 @@
+<template>
+    <lightning-card>
+        <lightning-button variant="brand" label="Create" icon-name="utility:record_create" onclick={createAccountHandler}></lightning-button> &nbsp; &nbsp;
+        <lightning-button variant="brand" label="Read" icon-name="utility:quick_text" onclick={readAccountHandler}></lightning-button> &nbsp; &nbsp;
+        <lightning-button variant="brand" label="Edit" icon-name="utility:edit" onclick={editAccountHandler}></lightning-button> &nbsp; &nbsp;
+        <lightning-button variant="destructive" label="Delete" icon-name="utility:record_delete" onclick={deleteAccountHandler}></lightning-button> &nbsp; &nbsp; <br /> <br />
+
+        <lightning-input  data-formfield="accountName" label="Enter Account Name"  required value={accountObj.Name}></lightning-input> <br />
+        <lightning-combobox
+            name="rating"
+            label="Rating"
+            value={rating}
+            placeholder="Select Rating"
+            options={ratingFields}
+            onchange={handleRating} ></lightning-combobox> <br />
+            <lightning-combobox
+            name="type"
+            label="Type"
+            value={type}
+            options={typeField}
+            onchange={handleType} ></lightning-combobox>
+        <!-- <lightning-input  data-formfield="accountRating" label="Enter Rating"  value={accountObj.Rating}></lightning-input> <br /> -->
+        <!-- <lightning-input  data-formfield="accountType" label="Enter Type"  value={accountObj.Type}></lightning-input> <br /> -->
+        <lightning-input  data-formfield="accountSLA" label="Enter SLA"  value={accountObj.SLA__c}></lightning-input> <br /> <br />
+
+        <!-- Account Information:<br /><br />
+        Account Name: {accountObj.Name} <br />
+        Account Type: {accountObj.Type} <br />
+        Account Rating: {accountObj.Rating} <br />
+        Account SLA: {accountObj.SLA__c} <br /> -->
+    </lightning-card>
+</template>

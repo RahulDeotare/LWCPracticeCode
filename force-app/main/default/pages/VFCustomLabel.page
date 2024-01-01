@@ -1,0 +1,8 @@
+<apex:page language="fr-ch">
+   <apex:form >
+     <apex:pageblock >
+       <apex:outputText value="Assignment on Custom Label====> "/>
+       <apex:outputText value="{!$Label.AssignmentCustomLabel}" />
+     </apex:pageblock>
+   </apex:form>
+</apex:page>

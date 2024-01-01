@@ -1,0 +1,17 @@
+<apex:page standardController="Opportunity" extensions="OpportunityPricingTypeVF_CX" >
+    <apex:form >
+    	<apex:pageBlock title="Create Opportunity Record">
+        	<apex:pageblockButtons >
+            	<apex:commandButton value="Save Record" action="{!saveRecords}" />
+            </apex:pageblockButtons>
+            <apex:pageBlockSection title="Basic Information of Opportunity with Pricebook">
+                <apex:inputField value="{!Opportunity.Name}"/>
+                <apex:inputField value="{!Opportunity.StageName}"/>
+                <apex:inputField value="{!Opportunity.CloseDate}"/>
+                <apex:inputField value="{!Opportunity.Pricing_Type__c}"/>
+                <apex:inputField value="{!Opportunity.Type}"/>
+                <apex:inputField value="{!Opportunity.Pricebook2Id}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

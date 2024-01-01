@@ -1,0 +1,28 @@
+<apex:page controller="Testing">
+
+<apex:form >
+
+<apex:pageBlock >
+    <apex:pageBlockSection columns="2">
+        <apex:pageblockSectionItem >
+            <apex:outputLabel value="Country"/>
+        </apex:pageblockSectionItem>        
+        <apex:pageblockSectionItem >                
+            <apex:selectList size="1" value="{!Country}">
+                <apex:selectOptions value="{!Countries}"/>
+                <apex:actionSupport event="onchange" reRender="city"/>
+            </apex:selectList>                
+        </apex:pageblockSectionItem>
+        <apex:pageblockSectionItem >
+            <apex:outputLabel value="City"/>
+        </apex:pageblockSectionItem>            
+        <apex:pageblockSectionItem >
+            <apex:selectList size="1" value="{!city}" id="city">
+                <apex:selectOptions value="{!cities}"/>
+            </apex:selectList>
+        </apex:pageblockSectionItem>            
+    </apex:pageBlockSection>        
+</apex:pageBlock>
+
+</apex:form>
+</apex:page>

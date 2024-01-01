@@ -1,0 +1,26 @@
+<apex:page standardController="Account" extensions="AttachmentController">
+      <apex:form >
+        <apex:pageBlock >
+            <apex:inputFile id="fileToUpload" value="{!fileBody}" filename="{!fileName}" styleClass="input-file"/>
+            <apex:pageBlockButtons >
+            <apex:commandButton value="Save" action="{!uploadFile}"  styleClass="upload-button" />
+            <apex:commandButton value="Go To First Page" action="{!GoTo}"  styleClass="upload-button" />
+           
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        
+        <apex:pageBlock >
+          <apex:actionRegion > 
+                <apex:pageBlockTable value="{!Account.CombinedAttachments}" var="Attachaments">
+                    <apex:column value="{!Attachaments.title}" />
+                    <apex:column >
+                        <apex:commandLink value="Delete" action="{!deleteAttach}" oncomplete="window.location.reload();" > 
+                            <apex:param name="attachid" value="{!Attachaments.id}" assignTo="{!attachid}"/>
+                        </apex:commandLink> 
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:actionRegion> 
+        </apex:pageBlock>
+    </apex:form>
+    
+</apex:page>

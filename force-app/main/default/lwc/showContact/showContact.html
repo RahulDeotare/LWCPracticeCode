@@ -1,0 +1,7 @@
+<template>
+    <lightning-card title="Contact Compo">
+        <lightning-input name="conName" label="Last Name" value={conLastName}></lightning-input> <br/>
+        <lightning-button variant="brand" label="Search" icon-name="utility:search" onclick={sentDataToChildCon}></lightning-button> <br />
+        <c-show-contact-child con-detail={conObj}></c-show-contact-child>
+    </lightning-card>
+</template>

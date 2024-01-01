@@ -1,0 +1,67 @@
+<template>
+    
+    <lightning-card >
+        <template if:true={boolVisible}>
+    <div class="box">
+        <template if:false={showLoginButton}>
+            <div class="submit-btn">
+                <lightning-button variant="brand" label="Register Yourself" onclick={handleClick}></lightning-button>
+            </div>
+        </template>
+        <template if:true={isLoading}>
+            <div class="spinnerDiv slds-align_absolute-center">
+                <lightning-spinner alternative-text="Loading" variant="brand"
+                    size="large"
+                ></lightning-spinner>
+            </div>
+        </template>
+        <template if:false={isLoading}>
+        <template if:true={showInputDetails}>
+        <div>
+            <div class="two-col-fields">
+                <div class="two-col-fields-inner">
+                    <lightning-input type="text" name="FirstName" label="First Name" onchange={handleFirstNameChange} required class="slds-m-bottom_x-small"></lightning-input>
+                </div>
+                <div class="two-col-fields-inner">
+                    <lightning-input type="text" name="LastName" label="Last Name" onchange={handleLastNameChange} required class="slds-m-bottom_x-small"></lightning-input>
+                </div>    
+            </div>
+            <lightning-input type="email" name="Email" label="Email" onchange={handleEmailChange} required class="slds-m-bottom_x-small"></lightning-input>
+            <lightning-input type="text" name="EmployeeId" label="Employee Id" onchange={handleEmloyeeIdChange} required class="slds-m-bottom_x-small"></lightning-input>
+            <div class="submit-btn">
+                <lightning-button label="Submit" variant="brand" onclick={CreateAttendance}></lightning-button>
+            </div>
+        </div>
+        </template>
+        </template>
+    </div>
+    </template>
+    <template if:false={boolVisible}>
+        <template if:true={negativeBoolFlag}>
+            <div class="information-page-wrap">
+                <div class="information-bgimage">
+                    <div class="information-form-wrap">
+                        <div class="information-card-header submit-header">
+                            <lightning-icon icon-name="action:approval" alternative-text="Registration Successful!" title="Registration Successful!"></lightning-icon>
+                            <h2 class="information-card-header-heading">Your Registration Successful!.</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <template if:false={negativeBoolFlag}>
+            <div class="information-page-wrap">
+                <div class="information-bgimage">
+                    <div class="information-form-wrap">
+                        <div class="information-card-header submit-header">
+                            <lightning-icon icon-name="action:close" alternative-text="Registration unSuccessful!" title="Registration unSuccessful!"></lightning-icon>
+                            <h2 class="information-card-header-heading">Your Registration Unsuccessful!.</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </template>
+</lightning-card>
+
+</template>

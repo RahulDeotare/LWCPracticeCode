@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Create New Opportunity">
+    <lightning-record-edit-form object-api-name="Opportunity">
+        
+        <lightning-input-field field-name="AccountId"> </lightning-input-field>
+        <lightning-input-field field-name="Name"> </lightning-input-field>
+        <lightning-input-field field-name="StageName"> </lightning-input-field>
+        <lightning-input-field field-name="CloseDate"> </lightning-input-field>
+        <lightning-input-field field-name="Amount"> </lightning-input-field>
+        <lightning-button
+            class="slds-m-around_medium"
+            type="submit"
+            label="Create new"
+        >
+        </lightning-button>
+    </lightning-record-edit-form>
+</lightning-card>
+</template>

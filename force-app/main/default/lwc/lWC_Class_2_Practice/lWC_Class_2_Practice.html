@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="LWC Lect 3">
+        
+        
+
+        <lightning-input type="text" name='firstName' label="Enter First Name" value={firstName} ></lightning-input> <br />
+        <lightning-input type="text" name='lastName' label="Enter Last Name" value={lastName} ></lightning-input> <br />
+        <lightning-input type="date" name='dob' label="Enter Date of Birth" value={dob} ></lightning-input> <br />
+
+        <lightning-combobox
+            name="gender"
+            label="Gender"
+            value={gender}
+            placeholder="Select Gender"
+            options={options}
+            onchange={handleGender} ></lightning-combobox>
+
+
+        <lightning-button variant="brand" label="Click Me"  title="Show Data" onclick={showData} class="slds-m-left_x-small"></lightning-button> <br /> <br />
+        
+        First Name: {firstName} <br />
+        Last Name: {lastName} <br /> 
+        DOB: {dob} <br />
+        Gender: {gender} 
+
+    </lightning-card>
+</template>

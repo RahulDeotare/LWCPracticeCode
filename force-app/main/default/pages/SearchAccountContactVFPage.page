@@ -1,0 +1,30 @@
+<apex:page controller="SearchAccountContactVFPage_CX">
+    <apex:form >
+        <apex:pageBlock title="Search Account Contact Details">
+            <apex:inputText value="{!SearchKey}" label="Search Records"/>
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Search Records" action="{!SearchRecords}"/>  
+            </apex:pageBlockButtons>
+  			<apex:pageBlockSection title="Account Records">
+                <apex:pageBlockTable value="{!wrapList1}" var="a" id="pbt1">
+                	<apex:column headerValue="Select">
+                        <apex:inputCheckbox value="{!a.check_Box}"/>
+                    </apex:column>
+                    <apex:column value="{!a.acc.Name}" />
+                    <apex:column value="{!a.acc.Id}" />
+                </apex:pageBlockTable>
+                <apex:commandButton value="Delete Account Record" action="{!DeleteSelectedAccount}" reRender="pbt1" />
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Contact Records">
+            	<apex:pageBlockTable value="{!wrapList2}" var="c" id="pbt2">
+                	<apex:column headerValue="Select">
+                        <apex:inputCheckbox value="{!c.check_BoxCon}"/>
+                    </apex:column>
+                    <apex:column value="{!c.con.Name}" />
+                    <apex:column value="{!c.con.Id}" />
+                </apex:pageBlockTable>
+                <apex:commandButton value="Delete Contact Record" action="{!DeleteSelectedContact}" reRender="pbt2"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

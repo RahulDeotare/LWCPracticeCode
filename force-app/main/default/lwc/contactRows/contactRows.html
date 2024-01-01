@@ -1,0 +1,104 @@
+<template>
+    <lightning-card>
+        <lightning-spinner if:true={isSpinner} variant="brand" size="large"> </lightning-spinner>
+        <lightning-layout>
+           <lightning-layout-item size="12">
+              <lightning-button class="slds-float--right slds-m-around_small" 
+                                variant="brand" 
+                                label="Save"
+                                onclick={saveRows}></lightning-button>
+ 
+              <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-border_left slds-border_right" 
+                     aria-labelledby="element-with-table-label other-element-with-table-label">
+                <thead>
+                    <tr>
+                        <th>LastName</th>
+                        <th>LeadSource</th>
+                        <th>Phone</th>
+                        <th>Level__c</th>
+                        <th>Account Name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={filterList} for:item="filterData" for:index="index">
+                        <tr key={filterData}>
+                           <td>
+                              <lightning-input type="text" name="lastName" data-index={index}
+                                 variant="label-hidden" placeholder="" onchange={handleChange}
+                                 value={filterData.LastName}>
+                              </lightning-input>
+                           </td>
+                           <td>
+                            <lightning-combobox name="leadsource" data-index={index} variant="label-hidden"
+                               placeholder="" onchange={handleChange} value={filterData.LeadSource}
+                               options={leadsourceOptions}>
+                            </lightning-combobox>
+
+                         </td>
+                         
+                         <td>
+                          <lightning-input type="text" name="conPhone" data-index={index}
+                             value={filterData.Phone} variant="label-hidden" onchange={handleChange}>
+                          </lightning-input>
+                         </td>
+                         <td>
+                           <lightning-combobox name="level" data-index={index} variant="label-hidden"
+                              placeholder="" onchange={handleChange} value={filterData.Level__c}
+                              options={levelOptions}>
+                           </lightning-combobox>
+
+                        </td>
+                        <td>
+                           <c-custom-lookup obj-name="Account" search-placeholder="Search Accounts" icon-name="standard:account" onlookupselected={handleAccountSelection}> </c-custom-lookup>
+                        </td>
+                         <td>
+                          <lightning-button-icon data-index={filterData.id} class="slds-float--right"
+                               icon-name="action:new" onclick={handleAddRow}></lightning-button-icon>
+                            <lightning-button-icon data-index={filterData.id} class="slds-float--right"
+                               icon-name="action:delete" onclick={handleRemoveRow}></lightning-button-icon>
+                         </td>
+                      </tr>
+                    </template>
+                </tbody>
+             </table>               
+          </lightning-layout-item>
+       </lightning-layout>
+    </lightning-card>
+    <br /> <br /> <br /> <br />
+      <lightning-card title="Show All Contacts">
+          <!-- <lightning-input label="Account Name" data-formfield="accountName"></lightning-input> <br /> -->
+          
+            <!--<lightning-datatable
+                key-field="Id"
+                data={contacts.data}
+                columns={columns}>
+            </lightning-datatable>-->
+
+            <div class="slds-var-p-around_medium">
+               <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                  <thead>
+                      <tr>
+                          <th>LastName</th>
+                          <th>LeadSource</th>
+                          <th>Phone</th>
+                          <th>Level__c</th>
+                          <th>Account Name</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <template for:each={contacts} for:item="con">
+                          <tr key={con.fields.Id.value}>
+                              <td>{con.fields.LastName.value}</td>
+                              <td>{con.fields.LeadSource.value}</td>
+                              <td>{con.fields.Phone.value}</td>
+                              <td>{con.fields.Level__c.value}</td>
+                              <td>{con.fields.AccountId.value}</td>
+                          </tr>
+                      </template>
+                  </tbody>
+               </table>
+          </div>
+      </lightning-card>
+  
+</template>

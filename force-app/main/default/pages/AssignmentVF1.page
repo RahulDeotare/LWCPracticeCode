@@ -1,0 +1,30 @@
+<apex:page standardController="Account" extensions="AttachmentController">
+    <apex:form >        
+        <apex:pageBlock title="Account Details"  >
+            <apex:pageBlockSection columns="2" >
+                <apex:outputField value="{!Account.Id}"/> 
+                <apex:outputField value="{!Account.Name}"/> 
+                <apex:outputField value="{!Account.Phone}"/> 
+                <apex:outputField value="{!Account.Industry}"/> 
+                <apex:outputField value="{!Account.Type}"/> 
+                <apex:outputField value="{!Account.Email__c}"/> 
+            </apex:pageBlockSection> 
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!move}" value="Edit" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        <apex:pageBlock > 
+            <apex:actionRegion >
+                <apex:pageBlockTable value="{!Account.CombinedAttachments}" var="Attachaments" id="r" >
+                    <apex:column value="{!Attachaments.title}" />
+                    <apex:column >
+                        <apex:commandLink value="Delete" action="{!deleteAttach}" oncomplete="window.location.reload(false);" reRender="r"> 
+                            <apex:param name="attachid" value="{!Attachaments.id}" assignTo="{!attachid}"/>
+                        </apex:commandLink> 
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:actionRegion>
+        </apex:pageBlock>
+        
+    </apex:form>
+</apex:page>

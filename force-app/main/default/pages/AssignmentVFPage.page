@@ -1,0 +1,28 @@
+<apex:page standardController="Account" extensions="AssignmentVFPage_CX">
+    <apex:form >
+     <apex:pageMessages ></apex:pageMessages>
+     <apex:detail subject="{!account.Id}" relatedList="true" title="false"/>
+        <apex:pageBlock title="Account Records">
+          <apex:pageBlockButtons >
+             <apex:commandButton value="Save" action="{!Save}"/>
+             <apex:commandButton value="Cancel" action="{!Cancel}"/>
+          </apex:pageBlockButtons>
+                <apex:pageBlockSection title="Account Basic Information">
+               
+                    <apex:inputField value="{!Account.Name}"/> 
+                    <apex:inputField value="{!Account.Type}"/>
+                    <apex:inputField value="{!Account.Rating}"/>
+                    <apex:inputField value="{!Account.SLA__c}"/>
+                </apex:pageBlockSection>                
+              <apex:pageBlockTable value="{!accList}" var="objAcc">
+                  <apex:repeat value="{!Account.attachments}" var="att">
+            <apex:panelgrid columns="1">
+                <h1>Image</h1>
+                <apex:image url="/servlet/servlet.FileDownload?file={!att.Id}"/>
+            </apex:panelgrid>
+</apex:repeat>
+              </apex:pageBlockTable>
+         </apex:pageBlock>
+    </apex:form> 
+    <apex:relatedList subject="{!account}"  list="CombinedAttachments" />
+</apex:page>

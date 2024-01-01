@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="Simple Calculator" icon-name="utility:formula">
+        <div class="slds-var-p-around_small">
+            <lightning-input type="number" label="Enter First Number" name="First Number" onchange={numHandler}></lightning-input> 
+            <lightning-input type="number" label="Enter Second Number" name="Second Number" onchange={numHandler}></lightning-input><br/>
+            <lightning-button-group>
+                <lightning-button label="Addition" icon-name="utility:add" variant="brand" icon-position="left" onclick={addHandler}></lightning-button>
+                <lightning-button label="Subtraction" icon-name="utility:dash" variant="brand-outline" icon-position="left" onclick={subHandler}></lightning-button>
+                <lightning-button label="Multiplicaion" icon-name="utility:close" variant="brand" icon-position="left" onclick={mulHandler}></lightning-button>
+                <lightning-button label="Division" icon-name="utility:flow_alt" variant="brand-outline" icon-position="left" onclick={divHandler}></lightning-button>
+            </lightning-button-group><br/><br/>
+            <lightning-formatted-text value={currentResult}></lightning-formatted-text><br/><br/>
+            <lightning-button label="Show Previous Result" onclick={showPrevResult}></lightning-button><br/>
+        </div>
+        <template if:true={pervShow}>
+            <div class="slds-box slds-box_xx-small slds-align_absolute-center" style="height:5rem">
+                <ul>
+                    <template iterator:it={previousList}>
+                        <li key={it.value}>
+                            <p>{it.value}</p>
+                        </li>
+                    </template>
+                </ul>
+            </div>   
+        </template>
+    </lightning-card>
+</template>

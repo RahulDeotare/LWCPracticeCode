@@ -1,0 +1,24 @@
+<template>
+    <lightning-card title="Account Contact Information">
+      <lightning-input type="text" name="accName" label="Enter Account Name" value={accountObject.Name}></lightning-input>
+      <br></br>
+      <lightning-button variant="brand" icon-name="utility:search" label="Search Record" onclick={searchaccountcontroller}></lightning-button>
+      <br></br>
+      <!-- Account Table -->
+      <lightning-datatable key-field="id" data={accList} columns={accTableColumns} hide-checkbox-column="false" onrowselection={selectedaccountrows}></lightning-datatable>
+      <br></br>
+      <!-- Contact Table -->
+      <template if:true={showContactDetailFlag}> 
+              Total Contact Records= {countOfContacts} 
+        <br></br>
+              Selected Contact Rows= {SelectedContactRows} 
+        <br></br>
+        <lightning-datatable key-field="id" data={contactList} columns={contactTableColumns} hide-checkbox-column="false" onrowselection={selectedcontactrows}></lightning-datatable>
+        <br></br>
+      </template>
+      <template if:true={showContactDeleteButtonFlag}>
+        <lightning-button variant="destructive" icon-name="utility:delete" label="Delete Selected Record" onclick={deletecontactrecord}></lightning-button>
+        <br></br>
+      </template>
+    </lightning-card>
+  </template>

@@ -1,0 +1,88 @@
+<template>
+<!-- <template if:true={openLwc}> -->
+    <lightning-card title="Related Contacts">
+        <div class="slds-page-header slds-page-header--object-home">
+            <lightning-layout>
+                <lightning-layout-item >
+                    <lightning-icon icon-name="standard:contact" alternative-text="Contact" ></lightning-icon>
+                </lightning-layout-item>
+                <lightning-layout-item class="slds-m-left--small">
+                    <p class="slds-text-title--caps slds-line-height--reset">Accounts</p>
+                    <h1 class="slds-page-header__title slds-p-right--x-small">Contact
+                        Viewer</h1>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+       
+        <!--Table with Buttons-->
+        <template if:true={contacts}>
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                    <tr>
+                        <th>Account Name</th>
+                        <th>FirstName</th>
+                        <th>LastName</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Edit Reord</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={contacts} for:item="contact">
+                        <tr key={contact.Id}>
+                            <td>{contact.Account.Name}</td>
+                            <td>{contact.FirstName}</td>
+                            <td>{contact.LastName}</td>
+                            <td>{contact.Email}</td>
+                            <td>{contact.Phone}</td>
+                            <td>
+                                <lightning-button class="slds-float--right" variant="brand" label="Edit" data-id={contact.Id}
+                                      icon-name="action:edit" onclick={handleEdit}></lightning-button>
+                               </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </template>
+        
+        <template if:true={modalContainer}>
+            <section  class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModalAction}>
+                           <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small" ></lightning-icon>
+                        </button>
+                        <h2 class="slds-text-heading_medium slds-hyphenate">**Contact Record Detail**</h2>
+                     </header>
+
+                     <div class="slds-modal__content slds-p-around_medium">
+                        <lightning-record-edit-form object-api-name="Contact" record-id={content}
+                            
+                        >
+                            <lightning-messages>
+                            </lightning-messages>  
+                             <lightning-output-field field-name={fields.accId}></lightning-output-field>
+                            <lightning-input-field field-name={fields.firstnameField}></lightning-input-field>
+                            <lightning-input-field field-name={fields.lastnameField}  ></lightning-input-field>
+                            <lightning-input-field field-name={fields.emailField} ></lightning-input-field>
+                            <lightning-input-field field-name={fields.phoneField} ></lightning-input-field> 
+                            <!--<lightning-button variant="brand" type="submit" class="slds-m-around_xx-small" label="Save" onclick={saveHandler}></lightning-button>
+                            <lightning-button class="slds-m-around_xx-small" variant="destructive" label="Delete" title="Delete Record"  onclick={deleteHandler}></lightning-button>-->
+                            <footer class="slds-modal__footer">
+                                <lightning-button class="slds-p-around_x-small" variant="Neutral" label="Close" title="Close"  onclick={closeModalAction}></lightning-button> &nbsp;
+                                <lightning-button class="slds-p-around_x-small" type="submit" variant="brand" label="Save" title="Save Record"></lightning-button> &nbsp;
+                                <lightning-button class="slds-p-around_x-small" variant="success" label="Clone" title="Clone Record"  onclick={cloneHandler}></lightning-button> &nbsp;
+                                <lightning-button class="slds-p-around_x-small" variant="destructive" label="Delete" title="Delete Record"  onclick={deleteHandler}></lightning-button> &nbsp;
+                           </footer> 
+                            <!-- <lightning-button class="slds-m-top_small" type="submit" label="Create Contact">
+                            </lightning-button> -->
+                        </lightning-record-edit-form>
+                     </div>
+                     
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </lightning-card>
+<!-- </template> -->
+</template>

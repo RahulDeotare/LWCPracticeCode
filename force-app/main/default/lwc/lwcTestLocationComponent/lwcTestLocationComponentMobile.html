@@ -1,0 +1,69 @@
+<template>
+    <lightning-card>
+        <div class="slds-grid slds-wrap">
+            <!-- Left column for form elements -->
+            <div class="slds-col slds-size_12-of-12 slds-large-size_6-of-12">
+                <template if:true={boolVisible}>
+                    <template if:false={showLoginButton}>
+                        <!-- Registration form -->
+                        <div class="slds-p-around_medium slds-align_absolute-center">
+                            <lightning-button variant="brand" label="Register Yourself" onclick={handleClick}></lightning-button>
+                        </div>
+                    </template>
+                    <template if:true={isLoading}>
+                        <!-- Loading spinner -->
+                        <div class="slds-align_absolute-center">
+                            <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+                        </div>
+                    </template>
+
+                    <template if:false={isLoading}>
+                        <template if:true={showInputDetails}>
+                        <!-- Registration input fields -->
+                        <div class="slds-p-around_medium">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                                    <lightning-input type="text" name="FirstName" label="First Name" onchange={handleFirstNameChange} required class="slds-m-bottom_x-small"></lightning-input>
+                                </div>
+                                <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                                    <lightning-input type="text" name="LastName" label="Last Name" onchange={handleLastNameChange} required class="slds-m-bottom_x-small"></lightning-input>
+                                </div>
+                                <div class="slds-col slds-size_12-of-12">
+                                    <lightning-input type="email" name="Email" label="Email" onchange={handleEmailChange} required class="slds-m-bottom_x-small"></lightning-input>
+                                </div>
+                                <div class="slds-col slds-size_12-of-12">
+                                    <lightning-input type="text" name="EmployeeId" label="Employee Id" onchange={handleEmloyeeIdChange} required class="slds-m-bottom_x-small"></lightning-input>
+                                </div>
+                                <div class="slds-col slds-size_12-of-12">
+                                    <div class="slds-align_absolute-center">
+                                        <lightning-button label="Submit" variant="brand" onclick={CreateAttendance}></lightning-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </template>
+                    </template>
+                </template>
+                <!-- Success/Error messages -->
+                <template if:false={boolVisible}>
+                    <div class="slds-p-around_medium">
+                        <template if:true={negativeBoolFlag}>
+                            <!-- Success message -->
+                            <div class="slds-text-align_center">
+                                <lightning-icon icon-name="action:approval" alternative-text="Registration Successful!" title="Registration Successful!"></lightning-icon>
+                                <h2 class="slds-text-heading_medium">Your Registration Successful!</h2>
+                            </div>
+                        </template>
+                        <template if:false={negativeBoolFlag}>
+                            <!-- Error message -->
+                            <div class="slds-text-align_center">
+                                <lightning-icon icon-name="action:close" alternative-text="Registration Unsuccessful!" title="Registration Unsuccessful!"></lightning-icon>
+                                <h2 class="slds-text-heading_medium">Your Registration Unsuccessful!</h2>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>

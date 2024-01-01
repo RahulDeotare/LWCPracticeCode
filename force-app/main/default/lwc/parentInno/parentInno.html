@@ -1,0 +1,60 @@
+<template>
+    <lightning-card title="Find your visiting location" icon-name="standard:opportunity">     
+        <div class="slds-m-around_medium">     
+            <template if:true={LocationPicklist.data}>     
+                <lightning-combobox name="StageName" label="Location Type" value={LocationValue}     
+                    options={LocationPicklist.data.values} onchange={handleChange}>     
+                </lightning-combobox>     
+            </template>        
+             
+     
+            <template if:true={Malls}>     
+               <div style="background:#ddd; border:1px #ccc solid; padding:10px; margin-top:10px;"> 
+                <div class="slds-page-header__name-title">
+                    <h4 class="slds-page-header__title">                
+                        <lightning-icon icon-name="standard:opportunity" size="small"></lightning-icon> Selected value is:- <span style="color:#ff8000; font-size:18px;">{LocationValue}</span> 
+                    </h4>
+                </div>
+                <br/> 
+                   <p>This is default description of <strong style="color:brown">{LocationValue} ..</strong></p><br/>
+                   <p><a href="https://www.w3web.net/" target="_blank" rel="noopener noreferrer"> Malls in Pune</a> are must to visit to enjoy weekends, movies and night life. <a href="https://www.w3web.net/" target="_blank" rel="noopener noreferrer"> more…</a></p>
+                </div>    
+            </template>
+     
+            <template if:true={Hotels}>                
+                <div style="background:#ddd; border:1px #ccc solid; padding:10px; margin-top:10px;"> 
+                    <div class="slds-page-header__name-title">
+                        <h4 class="slds-page-header__title">                
+                            <lightning-icon icon-name="standard:opportunity" size="small"></lightning-icon> Selected value is:- <span style="color:#ff8000; font-size:18px;">{LocationValue}</span> 
+                        </h4>
+                    </div>
+                    <br/> 
+                       <p>This is default description of <strong style="color:brown">{LocationValue} ..</strong></p><br/>
+                       <p><a href="https://www.w3web.net/" target="_blank" rel="noopener noreferrer"> Hotels </a> in Pune are luxurious and you can visit five star hotels and their maps are available with this application. <a href="https://www.w3web.net/" target="_blank" rel="noopener noreferrer"> more…</a></p>
+                    </div>
+            </template>
+     
+            <template if:true={WaterPark}>
+                <div style="background:#ddd; border:1px #ccc solid; padding:10px; margin-top:10px;"> 
+                    <div class="slds-page-header__name-title">
+                        <h4 class="slds-page-header__title">                
+                            <lightning-icon icon-name="standard:opportunity" size="small"></lightning-icon> Selected value is:- <span style="color:#ff8000; font-size:18px;">{LocationValue}</span> 
+                        </h4>
+                    </div>
+                    <br/> 
+                       <p>This is default description of <strong style="color:brown">{LocationValue} ..</strong></p><br/>
+                       <p><a href="https://www.w3web.net/" target="_blank" rel="noopener noreferrer"> Water Park</a> are nearby location from Pune. <a href="https://www.w3web.net/" target="_blank" rel="noopener noreferrer"> more…</a></p>
+                    </div>
+            </template>
+        </div>
+    <br/><br/>
+       
+      <!--Dependent Picklist -->
+      <lightning-combobox name="sublocations"
+                        label="SubLocations"
+                        placeholder="Select Location"
+                        options={sublocations}>
+    </lightning-combobox>
+     
+       </lightning-card> 
+    </template>

@@ -1,0 +1,29 @@
+<apex:page controller="Country">
+    <apex:form >
+     <apex:actionFunction name="passToController" reRender="statesSelectList" action="{!Result}" >
+          <apex:param name="firstParam" assignTo="{!country}" value="" />
+      </apex:actionFunction>
+        <apex:pageBlock title="Country City Information">           
+            <apex:pageBlockSection title="Basic Details">
+                <apex:outputLabel value="Country Name :"/>
+                <apex:selectList size="1" onChange="GetCountry(this.value)">
+                    <apex:selectOptions value="{!countryNames}"/>
+                </apex:selectList>
+                
+                <apex:outputLabel value="City Name :"/>
+                
+                <apex:selectList size="1" Id="citySelectList">
+                    <apex:selectOptions value="{!cityNames}"/>
+                </apex:selectList>
+   
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+        <script type="text/javascript">
+            function GetCountry(val)
+            {
+            passToController(val );
+            return true;
+        }
+    </script>
+</apex:page>

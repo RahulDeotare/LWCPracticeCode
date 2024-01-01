@@ -1,0 +1,28 @@
+<template>
+    <lightning-card title="Calculator" icon-name="utility:formula">
+        <lightning-input name="firstNumber" label="First Number" type="number" onchange={numHandler}></lightning-input>
+        <lightning-input name="secondNumber" label="Second Number" type="number" onchange={numHandler}></lightning-input>
+        <br /> <br />
+        <lightning-button-group>
+            <lightning-button variant="brand" label="Addition" onclick={addHandler} icon-name="utility:add" ></lightning-button>
+            <lightning-button variant="brand-outline" label="Subtraction" onclick={subHandler} icon-name="utility:dash" ></lightning-button>
+            <lightning-button variant="brand" label="Multiplication" onclick={mulHandler} icon-name="utility:close" ></lightning-button>
+            <lightning-button variant="brand-outline" label="Division" onclick={divHandler} icon-name="utility:flow_alt" ></lightning-button>
+        </lightning-button-group> <br /> <br />
+
+        <lightning-formatted-text value={currentResult}></lightning-formatted-text><br /> <br />
+        <lightning-button variant="brand" label="Show Previous Result" onclick={showPrevResult}></lightning-button>
+        <br />
+        <template if:true={showPrevFlag}>
+            <div class="slds-box slds-box_xx-small slds-align_absolute-center" style="height:5rem">
+                <ul>
+                    <template iterator:it={previousList}>
+                        <li key={it.value}>
+                            <p>{it.value}</p>
+                        </li>
+                    </template>
+                </ul>
+            </div>   
+        </template>
+    </lightning-card>
+</template>

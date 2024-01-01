@@ -1,0 +1,21 @@
+<apex:page controller="Mycontroller">
+<apex:form >
+<apex:pageBlock >
+<apex:pageBlockSection >
+              <apex:pageBlockTable value="{!listofaccountattachments}" var="attach">
+               <apex:column headerValue="DELETE">
+            <apex:commandLink action="{!doRemove}" onclick="if(!confirm('Are you sure?')) return false;">Remove
+            <apex:param value="{!attach.Id}" name="idToDel" assignTo="{!recid}"/>
+            </apex:commandLink>
+            </apex:column>
+              
+              <apex:column value="{!attach.name}"/>
+            <apex:column value="{!attach.Attachments}"/>
+              
+              </apex:pageBlockTable>
+              
+  </apex:pageBlockSection>
+
+</apex:pageblock>
+</apex:form>
+</apex:page>

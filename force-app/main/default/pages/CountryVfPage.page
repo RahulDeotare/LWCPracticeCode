@@ -1,0 +1,20 @@
+<apex:page controller="CountryCityController">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection title="Country">
+                <apex:actionFunction name="rerenderCities" rerender="c" >
+                    <apex:param name="firstParam" assignTo="{!country}" value="" />         <!-- getting the country from get-set  -->
+                </apex:actionFunction>
+                <apex:selectList id="country"  size="1" value="{!country}" onChange="rerenderCities(this.value)">       <!-- on select of country the city picklist should be enabled -->
+                    <apex:selectOptions value="{!Countries}"/>              <!-- calling the public class get-Countries from controller --> 
+                </apex:selectList>                                              <!-- therefore (this.value) is used -->
+            </apex:pageBlockSection> 
+            <apex:pageBlockSection title="City">
+                 <apex:selectList id="c" size="1" value="{!city}">              <!-- calling the public class get-cities from controller -->
+                <apex:selectOptions value="{!Cities}"/>
+              </apex:selectList>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        
+    </apex:form>
+</apex:page>

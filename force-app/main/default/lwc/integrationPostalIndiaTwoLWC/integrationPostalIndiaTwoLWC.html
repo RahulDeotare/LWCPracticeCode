@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="Postal Code Details">
+        <div class="slds-m-around_medium">
+            <lightning-input label="Enter the Pincode" value={pincode} onchange={handlePincodeChange}></lightning-input>
+            <p></p>
+            <lightning-button label="Go" onclick={getPincodeDetailAddress}></lightning-button>
+            <p></p>
+            <p></p>
+            <template if:true={places}>
+                <template for:each={places} for:item="place">
+                    <div key={place}>{place}</div>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+</template>

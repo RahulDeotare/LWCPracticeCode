@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="Popup Message">
+        <lightning-button variant="brand" label="Show Popup" onclick={popUpHandler}></lightning-button>
+
+        <template if:true={showPopUpFlag}>
+            <c-child-compo
+                            onmyshowpopupevent={cancelPopUp}
+            >
+
+            </c-child-compo>
+
+        </template>
+
+    </lightning-card>
+</template>

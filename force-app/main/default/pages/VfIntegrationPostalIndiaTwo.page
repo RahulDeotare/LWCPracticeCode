@@ -1,0 +1,14 @@
+<apex:page controller="IntegrationPostalIndiaTwo">
+    <apex:form id="rs">
+        Enter the Pincode: <apex:inputText value="{!pincode}"/>
+        <p></p>
+        <apex:commandButton value="Go" action="{!getPincodeDetailAddress}" reRender="rs"/>
+        <p></p>
+        <p></p>
+        <apex:dataList value="{!places}" var="arr">
+            {!arr}
+        </apex:dataList>
+
+
+    </apex:form>
+</apex:page>
